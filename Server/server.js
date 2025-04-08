@@ -1,5 +1,5 @@
 // server.js
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -14,12 +14,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Connect to MongoDB
-mongoose.connect(
-    'mongodb://localhost:27017/hospital',
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    });
+mongoose.connect(process.env.MongoDB_URL);
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log('MongoDB database connection established successfully');
